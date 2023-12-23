@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <style>
+        .modal-dialog {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 50%;
+            height: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <th:block th:replace="~{header :: headerFragment}"></th:block>
+
+    <div class="container mt-5">
+        <table class="table table-hover">
+            <colgroup>
+                <col style="width: 60%;"/>
+                <col style="width: 20%;"/>
+                <col style="width: 20%;"/>
+                <col style="height: 100px"/>
+            </colgroup>
+            <thead>
+            <tr style="height: 50px; vertical-align: middle">
+                <th style="cursor:default;">제목</th>
+                <th style="cursor:default;">작성자</th>
+                <th style="cursor:default;">작성 날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="height: 50px; vertical-align: middle;">
+                <td style="cursor:pointer;">세번째 게시글</td>
+                <td style="cursor:default;">owo3</td>
+                <td style="cursor:default;">2023-12-25</td>
+            </tr>
+            <tr style="height: 50px; vertical-align: middle;">
+                <td style="cursor:pointer;">두번째 게시글</td>
+                <td style="cursor:default;">owo2</td>
+                <td style="cursor:default;">2023-12-24</td>
+            </tr>
+            <tr style="height: 50px; vertical-align: middle;">
+                <td id="open-modal" style="cursor:pointer;">첫번째 게시글</td>
+                <td style="cursor:default;">owo1</td>
+                <td style="cursor:default;">2023-12-23</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="modal" style="background-color: rgba(0, 0, 0, 0.4)">
+        <div class="modal-dialog">
+            <div class="modal-content" style="padding: 20px">
+                <div class="modal-header">
+                    <h4 class="modal-title">제목</h4>
+                    <button type="button" class="btn-close" id="close-modal"></button>
+                </div>
+                <div class="modal-body mt-4 mb-4">
+                    내용
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="update">수정</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" id="delete">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modal");
+        const btnOpenModal = document.getElementById("open-modal");
+        const btnCloseModal = document.getElementById("close-modal");
+
+        btnOpenModal.addEventListener("click", ()=>{
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        });
+
+        btnCloseModal.addEventListener("click", ()=>{
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
+    </script>
+</body>
+</html>
