@@ -1,6 +1,5 @@
 package org.example.board.service;
 
-import lombok.RequiredArgsConstructor;
 import org.example.board.entity.UserVO;
 import org.example.board.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
     @Autowired

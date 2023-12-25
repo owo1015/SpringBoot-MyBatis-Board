@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.board.mapper.BoardMapper">
+    <!-- 게시글 목록 -->
+    <select id="getBoardList" resultType="map">
+        SELECT
+            a.id,
+            a.title,
+            a.content,
+            a.createDate,
+            a.userId,
+            b.name
+        FROM board as a
+            join user as b
+                on a.userId = b.id
+        ORDER BY
+            id desc;
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insertBoard" parameterType="org.example.board.entity.BoardVO">
+        INSERT
+        INTO board (
+            title,
+            content,
+            createDate,
+            userId
+        )
+        VALUES(
+            #{title},
+            #{content},
+            now(),
+            #{userId}
+        );
+    </insert>
+</mapper>
