@@ -21,9 +21,24 @@ public class BoardService {
         return this.boardMapper.getBoardList();
     }
 
-    // 게시글 등록
-    public void insertBoard(BoardVO boardVO, @AuthenticationPrincipal UserVO userVO) {
-        boardVO.setUserId(userVO.getId());
-        boardMapper.insertBoard(boardVO);
+    // 게시글 상세보기
+    public BoardVO getBoardDetail(int id) {
+        return this.boardMapper.getBoardDetail(id);
     }
+
+    // 게시글 등록
+    public int insertBoard(BoardVO boardVO, @AuthenticationPrincipal UserVO userVO) {
+        boardVO.setUserId(userVO.getId());
+        return this.boardMapper.insertBoard(boardVO);
+    }
+
+//    // 게시글 수정
+//    public int updateBoard(BoardVO boardVO, int id) {
+//        return this.boardMapper.updateBoard(boardVO);
+//    }
+//
+//    // 게시글 삭제
+//    public int deleteBoard(BoardVO boardVO, int id) {
+//        return this.boardMapper.deleteBoard(boardVO);
+//    }
 }

@@ -12,6 +12,15 @@ public interface BoardMapper {
     // 게시글 목록
     List<Map<String, Object>> getBoardList();
 
+    // 게시글 상세보기
+    BoardVO getBoardDetail(int id);
+
     // 게시글 등록
-    void insertBoard(BoardVO boardVO);
+    int insertBoard(BoardVO boardVO);
+
+//    // 게시글 수정
+//    int updateBoard(BoardVO boardVO);
+//
+//    // 게시글 삭제
+//    int deleteBoard(BoardVO boardVO);
 }

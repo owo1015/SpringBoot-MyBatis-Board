@@ -18,6 +18,25 @@
             id desc;
     </select>
 
+    <!-- 게시글 상세보기 -->
+    <select id="getBoardDetail" resultType="org.example.board.entity.BoardVO">
+        SELECT
+            a.id,
+            a.title,
+            a.content,
+            a.createDate,
+            a.userId,
+            b.name
+        FROM
+            board as a
+        join
+            user as b
+        on
+            a.userId = b.id
+        where
+            a.id = #{id};
+    </select>
+
     <!-- 게시글 등록 -->
     <insert id="insertBoard" parameterType="org.example.board.entity.BoardVO">
         INSERT
@@ -34,4 +53,23 @@
             #{userId}
         );
     </insert>
+
+    <!-- 게시글 수정 -->
+<!--    <update id="updateBoard" parameterType="org.example.board.entity.BoardVO">-->
+<!--        UPDATE-->
+<!--            board-->
+<!--        SET-->
+<!--            title = #{title},-->
+<!--            content = #{content}-->
+<!--        WHERE-->
+<!--            id = #{id};-->
+<!--    </update>-->
+
+    <!-- 게시글 삭제 -->
+<!--    <delete id="deleteBoard" parameterType="org.example.board.entity.BoardVO">-->
+<!--        DELETE FROM-->
+<!--            board-->
+<!--        WHERE-->
+<!--            id = #{id};-->
+<!--    </delete>-->
 </mapper>
