@@ -11,14 +11,14 @@
     <th:block th:replace="~{header :: headerFragment}"></th:block>
 
     <div class="container p-3 my-5">
-        <input type="hidden" id="id">
+        <input type="hidden" id="id" th:value="${board.id}">
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
-            <input type="text" class="form-control" id="title">
+            <input type="text" class="form-control" id="title" th:value="${board.title}">
         </div>
         <div class="mb-5">
             <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" rows="10" id="content"></textarea>
+            <textarea class="form-control" rows="10" id="content" th:text="${board.content}"></textarea>
         </div>
         <div class="d-flex justify-content-end">
             <button class="btn btn-primary" onclick="updateBoard()">완료</button>

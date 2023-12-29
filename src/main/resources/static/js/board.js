@@ -2,7 +2,7 @@ $(document).ready(function(){
    showList();
 
    $("#modify").click(function () {
-       location.href = "/postModify?id=" + $("#modal-id").val() + "&title=" + $("#modal-title").html() + "&content=" + $("#modal-body").html();
+       location.href = "/postModify/" + $("#modal-id").val();
    });
 });
 
@@ -63,7 +63,7 @@ function insertBoard() {
         url: "/api/board/insert",
         data: JSON.stringify(data),
         dataType: 'json',
-        success: function (data) {
+        success: function () {
             alert("게시글이 등록됐습니다.");
             location.href = "/";
         }
@@ -82,7 +82,8 @@ function updateBoard() {
         contentType: "application/json; UTF-8;",
         url: "/api/board/update",
         data: JSON.stringify(data),
-        success: function (data) {
+        dataType: 'json',
+        success: function () {
             alert("게시글을 수정했습니다.");
             location.href = "/";
         }
@@ -100,7 +101,7 @@ function deleteBoard() {
         url: "/api/board/delete",
         data: JSON.stringify(data),
         dataType: 'json',
-        success: function (data) {
+        success: function () {
             closeModal();
             alert("게시글을 삭제했습니다.");
             location.reload(true);
