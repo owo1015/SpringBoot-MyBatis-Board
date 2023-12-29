@@ -1,5 +1,9 @@
 $(document).ready(function(){
    showList();
+
+   $("#modify").click(function () {
+       location.href = "/postModify?id=" + $("#modal-id").val() + "&title=" + $("#modal-title").html() + "&content=" + $("#modal-body").html();
+   });
 });
 
 function showList() {
@@ -32,40 +36,82 @@ function showList() {
 }
 
 function showDetail(id) {
-    let board = null;
-
     $.ajax({
         type: "GET",
         contentType: "application/json; UTF-8;",
-        url: "/api/board/" + id,
+        url: "/api/board/list/" + id,
         data: {},
         dataType: 'json',
-        async: false,
         success: function (data) {
-            board = data;
+            $("#modal-id").val(data.id);
+            $("#modal-title").html(data.title);
+            $("#modal-body").html(data.content);
+            openModal();
         }
     });
-
-    $("#modal-title").html(board.title);
-    $("#modal-body").html(board.content);
-
-    openModal(board.id);
 }
 
-function openModal(id) {
+function insertBoard() {
+    var data = {
+        title: $("#title").val(),
+        content: $("#content").val()
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; UTF-8;",
+        url: "/api/board/insert",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (data) {
+            alert("게시글이 등록됐습니다.");
+            location.href = "/";
+        }
+    });
+}
+
+function updateBoard() {
+    var data = {
+        id: $("#id").val(),
+        title: $("#title").val(),
+        content: $("#content").val()
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; UTF-8;",
+        url: "/api/board/update",
+        data: JSON.stringify(data),
+        success: function (data) {
+            alert("게시글을 수정했습니다.");
+            location.href = "/";
+        }
+    });
+}
+
+function deleteBoard() {
+    var data = {
+        id: $("#modal-id").val(),
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; UTF-8;",
+        url: "/api/board/delete",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (data) {
+            closeModal();
+            alert("게시글을 삭제했습니다.");
+            location.reload(true);
+        }
+    });
+}
+
+function openModal() {
     document.getElementById("modal").style.display = "block";
     document.body.style.overflow = "hidden";
-
-    document.getElementById("update").addEventListener("click", () => {
-        location.href="/postUpdate";
-    });
-
-    document.getElementById("delete").addEventListener("click", () => {
-        location.href = "/api/board/" + id + "/delete";
-        alert("게시글이 삭제되었습니다.");
-    });
 }
-
 
 function closeModal() {
     document.getElementById("modal").style.display = "none";

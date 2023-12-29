@@ -27,18 +27,17 @@ public class BoardService {
     }
 
     // 게시글 등록
-    public int insertBoard(BoardVO boardVO, @AuthenticationPrincipal UserVO userVO) {
-        boardVO.setUserId(userVO.getId());
+    public int insertBoard(BoardVO boardVO) {
         return this.boardMapper.insertBoard(boardVO);
     }
 
-//    // 게시글 수정
-//    public int updateBoard(BoardVO boardVO, int id) {
-//        return this.boardMapper.updateBoard(boardVO);
-//    }
-//
-//    // 게시글 삭제
-//    public int deleteBoard(BoardVO boardVO, int id) {
-//        return this.boardMapper.deleteBoard(boardVO);
-//    }
+    // 게시글 수정
+    public int updateBoard(BoardVO boardVO) {
+        return this.boardMapper.updateBoard(boardVO);
+    }
+
+    // 게시글 삭제
+    public int deleteBoard(BoardVO boardVO) {
+        return this.boardMapper.deleteBoard(boardVO);
+    }
 }

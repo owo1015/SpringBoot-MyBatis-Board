@@ -23,23 +23,24 @@ public class BoardApiController {
         return ResponseEntity.ok(this.boardService.getBoardList());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/list/{id}")
     public ResponseEntity<BoardVO> boardDetail(@PathVariable int id) {
         return ResponseEntity.ok(this.boardService.getBoardDetail(id));
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(BoardVO boardVO, @AuthenticationPrincipal UserVO userVO) {
-        return ResponseEntity.ok(this.boardService.insertBoard(boardVO, userVO));
+    public int insert(@RequestBody BoardVO boardVO, @AuthenticationPrincipal UserVO userVO) {
+        boardVO.setUserId(userVO.getId());
+        return this.boardService.insertBoard(boardVO);
     }
 
-//    @PutMapping("/{id}/update")
-//    public ResponseEntity<Integer> updateBoard(BoardVO boardVO, @PathVariable int id) {
-//        return ResponseEntity.ok(this.boardService.updateBoard(boardVO, id));
-//    }
-//
-//    @DeleteMapping("/{id}/delete")
-//    public ResponseEntity<Integer> deleteBoard(BoardVO boardVO, @PathVariable int id) {
-//        return ResponseEntity.ok(this.boardService.deleteBoard(boardVO, id));
-//    }
+    @PostMapping("/update")
+    public int update(@RequestBody BoardVO boardVO) {
+        return this.boardService.updateBoard(boardVO);
+    }
+
+    @PostMapping("/delete")
+    public int delete(@RequestBody BoardVO boardVO) {
+        return this.boardService.deleteBoard(boardVO);
+    }
 }

@@ -10,5 +10,5 @@ public interface UserMapper {
     UserVO getUserInfo(String id);
 
     // 회원가입
-    void saveUserInfo(UserVO userVO);
+    int saveUserInfo(UserVO userVO);
 }

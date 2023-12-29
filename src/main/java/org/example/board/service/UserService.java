@@ -28,8 +28,8 @@ public class UserService implements UserDetailsService {
     }
 
     // 회원가입
-    public void saveUser(UserVO userVO) {
+    public int saveUser(UserVO userVO) {
         userVO.setPassword(encoder.encode(userVO.getPassword()));
-        userMapper.saveUserInfo(userVO);
+        return this.userMapper.saveUserInfo(userVO);
     }
 }

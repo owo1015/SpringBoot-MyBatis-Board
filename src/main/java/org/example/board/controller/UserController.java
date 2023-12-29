@@ -20,10 +20,4 @@ public class UserController {
 
     @GetMapping("/signup")
     public String signup() { return "signup"; }
-
-    @PostMapping("/api/signup")
-    public String signup(UserVO userVO) {
-        userService.saveUser(userVO);
-        return "redirect:/login";
-    }
 }

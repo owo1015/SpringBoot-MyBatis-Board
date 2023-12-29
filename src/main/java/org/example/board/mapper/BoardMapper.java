@@ -18,9 +18,9 @@ public interface BoardMapper {
     // 게시글 등록
     int insertBoard(BoardVO boardVO);
 
-//    // 게시글 수정
-//    int updateBoard(BoardVO boardVO);
-//
-//    // 게시글 삭제
-//    int deleteBoard(BoardVO boardVO);
+    // 게시글 수정
+    int updateBoard(BoardVO boardVO);
+
+    // 게시글 삭제
+    int deleteBoard(BoardVO boardVO);
 }

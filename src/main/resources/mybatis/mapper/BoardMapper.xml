@@ -55,21 +55,21 @@
     </insert>
 
     <!-- 게시글 수정 -->
-<!--    <update id="updateBoard" parameterType="org.example.board.entity.BoardVO">-->
-<!--        UPDATE-->
-<!--            board-->
-<!--        SET-->
-<!--            title = #{title},-->
-<!--            content = #{content}-->
-<!--        WHERE-->
-<!--            id = #{id};-->
-<!--    </update>-->
+    <update id="updateBoard" parameterType="org.example.board.entity.BoardVO">
+        UPDATE
+            board
+        SET
+            title = #{title},
+            content = #{content}
+        WHERE
+            id = #{id};
+    </update>
 
     <!-- 게시글 삭제 -->
-<!--    <delete id="deleteBoard" parameterType="org.example.board.entity.BoardVO">-->
-<!--        DELETE FROM-->
-<!--            board-->
-<!--        WHERE-->
-<!--            id = #{id};-->
-<!--    </delete>-->
+    <delete id="deleteBoard" parameterType="org.example.board.entity.BoardVO">
+        DELETE FROM
+            board
+        WHERE
+            id = #{id};
+    </delete>
 </mapper>
