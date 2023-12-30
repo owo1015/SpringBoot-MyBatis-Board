@@ -44,6 +44,7 @@ function showDetail(id) {
         dataType: 'json',
         success: function (data) {
             $("#modal-id").val(data.id);
+            $("#modal-user").val(data.userId);
             $("#modal-title").html(data.title);
             $("#modal-body").html(data.content);
             openModal();
@@ -112,6 +113,17 @@ function deleteBoard() {
 function openModal() {
     document.getElementById("modal").style.display = "block";
     document.body.style.overflow = "hidden";
+    if($("#session-user").val() != $("#modal-user").val()) {
+        console.log($("#session-user").val());
+        console.log($("#modal-user").val());
+        document.getElementById("modify").style.visibility = "hidden";
+        document.getElementById("delete").style.visibility = "hidden";
+    } else {
+        console.log($("#session-user").val());
+        console.log($("#modal-user").val());
+        document.getElementById("modify").style.visibility = "visible";
+        document.getElementById("delete").style.visibility = "visible";
+    }
 }
 
 function closeModal() {
