@@ -1,10 +1,8 @@
 package org.example.board.service;
 
 import org.example.board.entity.BoardVO;
-import org.example.board.entity.UserVO;
 import org.example.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
